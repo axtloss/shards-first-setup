@@ -1,41 +1,35 @@
 {
-    "log_file": "/etc/vanilla/first-setup.log",
-    "distro_name": "Vanilla OS",
-    "distro_logo": "org.vanillaos.FirstSetup", 
+    "log_file": "/etc/first-setup.log",
+    "distro_name": "Project Shards",
+    "distro_logo": "org.vanillaos.FirstSetup",
     "pre_run": [
-        "export DEBIAN_FRONTEND=noninteractive",
-        "apt update", 
-        "apt install -f",
-        "apt upgrade -y"
     ],
     "post_run": [
-        "apt update", 
-        "apt install -f"
     ],
     "tour": {
         "get-involved": {
              "icon": "system-users-symbolic",
              "title": "Get Involved",
-             "description": "Vanilla OS is a community project. You can contribute to the project by reporting bugs, suggesting new features, or even by writing code.",
-             "read_more_link": "https://vanillaos.org/get-involved"
+             "description": "Project Shards is a community project. You can contribute to the project by reporting bugs, suggesting new features, or even by writing code.",
+             "read_more_link": "https://git.getcryst.al/project-shards"
         },
         "community": {
              "icon": "help-faq-symbolic",
              "title": "Join The Community",
              "description": "Our community is active on Discord. You can join us to ask questions, get help, or just to chat with other users.",
-             "read_more_link": "https://discord.gg/3cD2Q7Ht3S"
+             "read_more_link": "<instert invite here>"
         },
-        "abroot": {
+        "immutable": {
              "icon": "security-medium-symbolic",
              "title": "Immutable and Atomic",
-             "description": "Vanilla OS is an immutable and atomic Linux distribution. It is based on Debian and uses ABRoot to provide atomic transactions.",
-             "read_more_link": "https://documentation.vanillaos.org/docs/ABRoot/"
+             "description": "Project Shards is Immutable and Atomic. It uses a custom multi Volume system to be immutable.",
+             "read_more_link": "https://axtlos.neocities.org/shards.1"
         },
-        "apx": {
+        "shardmgr": {
              "icon": "vanilla-container-terminal-symbolic",
-             "title": "Sub-System Ready To Go",
-             "description": "Vanilla OS comes with Apx, a new package manager which installs software in integrated containers to prevent host compromise.",
-             "read_more_link": "https://documentation.vanillaos.org/docs/apx/"
+             "title": "Install any packages at any time",
+             "description": "Project Shards comes with shardmgr. It allows you to use pacman and the aur through ame, applications in containers using apx and apps in waydroid.",
+             "read_more_link": "<shardmgr blog post>"
         }
     },
     "steps": {
@@ -45,7 +39,7 @@
         },
         "welcome": {
             "template": "welcome",
-            "protected": true
+            "protected": false
         },
         "theme": {
             "template": "theme"
@@ -60,7 +54,7 @@
         },
         "packages": {
             "template": "preferences",
-            "is-advanced": true,
+            "is-advanced": false,
             "icon": "vanilla-package-symbolic",
             "title": "Package Manager",
             "description": "Choose one or more package managers to install",
@@ -72,15 +66,9 @@
                     "default": true
                 },
                 {
-                    "id": "snap",
-                    "title": "Snap",
-                    "subtitle": "Manage and configure Snaps and the Snapcraft repository.",
-                    "disabled": true
-                },
-                {
-                    "id": "appimage",
-                    "title": "AppImage",
-                    "subtitle": "Install necessary dependencies to run AppImages.",
+                    "id": "nix",
+                    "title": "Nix",
+                    "subtitle": "Installs the nix package manager.",
                     "default": true
                 },
                 {
@@ -96,22 +84,13 @@
                     "if": "flatpak",
                     "type": "command",
                     "commands": [
-                        "apt install -y flatpak gnome-software-plugin-flatpak",
-                        "!nextBoot flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+
                     ]
                 },
                 {
-                    "if": "snap",
-                    "type": "command",
-                    "commands": ["apt install -y snapd"]
-                },
-                {
-                    "if": "appimage",
+                    "if": "nix",
                     "type": "command",
                     "commands": [
-                        "apt install -y software-properties-common",
-                        "add-apt-repository --yes ppa:appimagelauncher-team/stable",
-                        "apt install -y fuse3 libfuse2 appimagelauncher"
                     ]
                 }
             ]
@@ -136,20 +115,17 @@
                         {
                             "name" : "Characters",
                             "icon" :  "org.gnome.Characters",
-                            "flatpak" : true,
-                            "snap" : true
+                            "flatpak" : true
                         },
                         {
                             "name" : "Cheese",
                             "icon" :  "org.gnome.Cheese",
-                            "flatpak" : true,
-                            "snap" : true
+                            "flatpak" : true
                         },
                         {
                             "name" : "Clocks",
                             "icon" :  "org.gnome.clocks",
-                            "flatpak" : true,
-                            "snap" : true
+                            "flatpak" : true
                         },
                         {
                             "name" : "Connections",
@@ -159,8 +135,7 @@
                         {
                             "name" : "Contacts",
                             "icon" :  "org.gnome.Contacts",
-                            "flatpak" : true,
-                            "snap" : true
+                            "flatpak" : true
                         },
                         {
                             "name" : "Disk Usage Analyzer",
@@ -170,8 +145,7 @@
                         {
                             "name" : "Document Viewer",
                             "icon" :  "org.gnome.Evince",
-                            "flatpak" : true,
-                            "snap" : true
+                            "flatpak" : true
                         },
                         {
                             "name" : "Fonts",
@@ -181,14 +155,12 @@
                         {
                             "name" : "Image Viewer",
                             "icon" :  "org.gnome.eog",
-                            "flatpak" : true,
-                            "snap" : true
+                            "flatpak" : true
                         },
                         {
                             "name" : "Logs",
                             "icon" :  "org.gnome.Logs",
-                            "flatpak" : true,
-                            "snap" : true
+                            "flatpak" : true
                         },
                         {
                             "name" : "Maps",
@@ -203,8 +175,7 @@
                         {
                             "name" : "Weather",
                             "icon" :  "org.gnome.Weather",
-                            "flatpak" : true,
-                            "snap" : true
+                            "flatpak" : true
                         }
                     ]
                 },
@@ -217,8 +188,7 @@
                         {
                             "name" : "LibreOffice",
                             "icon" : "org.libreoffice.LibreOffice",
-                            "flatpak": true,
-                            "snap" : true
+                            "flatpak": true
                         }
                     ]
                 },
@@ -293,27 +263,27 @@
                 {
                     "if" : "Characters",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.Characters || snap install gnome-characters"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Characters"]
                 },
                 {
                     "if" : "Cheese",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.Cheese || snap install cheese"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Cheese"]
                 },
                 {
                     "if" : "Clocks",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.clocks || snap install gnome-clocks"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.clocks"]
                 },
                 {
                     "if" : "Connections",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.Connections"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Connectionss"]
                 },
                 {
                     "if" : "Contacts",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.Contacts || snap install gnome-contacts"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Contacts"]
                 },
                 {
                     "if" : "Disk Usage Analyzer",
@@ -323,7 +293,7 @@
                 {
                     "if" : "Document Viewer",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.Evince || snap install evince"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Evince"]
                 },         
                 {
                     "if" : "Fonts",
@@ -333,12 +303,12 @@
                 {
                     "if" : "Image Viewer",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.eog || snap install eog"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.eog"]
                 },
                 {
                     "if" : "Logs",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.Logs || snap install gnome-logs"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Logs"]
                 },
                 {
                     "if" : "Maps",
@@ -353,12 +323,12 @@
                 {
                     "if" : "Weather",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.Weather || snap install gnome-weather"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Weather"]
                 },
                 {
                     "if" : "LibreOffice",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.libreoffice.LibreOffice || snap install libreoffice"]
+                    "commands" : ["!nextBoot flatpak install -y org.libreoffice.LibreOffice"]
                 },
                 {
                     "if" : "Bottles",
@@ -378,12 +348,12 @@
                 {
                     "if" : "Boxes",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.Boxes || snap install gnome-boxes"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Boxes"]
                 },
                 {
                     "if" : "Déjà Dup Backups",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y org.gnome.DejaDup || snap install deja-dup"]
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.DejaDup"]
                 },
                 {
                     "if" : "Flatseal",
@@ -403,7 +373,7 @@
                 {
                     "if" : "Shortwave",
                     "type" :  "command",
-                    "commands" : ["!nextBoot flatpak install -y de.haeckerfelix.Shortwave || snap install shortwave"]
+                    "commands" : ["!nextBoot flatpak install -y de.haeckerfelix.Shortwave"]
                 },
                 {
                     "if" : "Sound Recorder",
@@ -412,36 +382,12 @@
                 }
             ]
         },
-        "timeshift": {
-            "template": "yes-no",
-            "is-advanced": true,
-            "preset": false,
-            "icon": "vanilla-history-undo-symbolic",
-            "title": "Timeshift",
-            "description": "Choose whether to install Timeshift to create snapshots of your system.",
-            "buttons": {
-                "yes": "Install",
-                "no": "Skip",
-                "info": {
-                    "type": "text",
-                    "title": "Timeshift",
-                    "text": "Timeshift for Linux is an application that provides functionality similar to the System Restore feature in Windows and the Time Machine tool in Mac OS. Timeshift protects your system by taking incremental snapshots of the file system at regular intervals. These snapshots can be restored at a later date to undo all changes to the system.\n\nIn RSYNC mode, snapshots are taken using rsync and hard-links. Common files are shared between snapshots which saves disk space. Each snapshot is a full system backup that can be browsed with a file manager.\n\nIn BTRFS mode, snapshots are taken using the in-built features of the BTRFS filesystem. BTRFS snapshots are supported only on BTRFS systems having an Ubuntu-type subvolume layout (with @ and @home subvolumes)."
-                }
-            },
-            "final": [
-                {
-                    "if": "timeshift",
-                    "type": "command",
-                    "commands": ["apt install -y timeshift"]
-                }
-            ]
-        },
         "nvidia": {
             "template": "yes-no",
-            "is-advanced": true,
+            "is-advanced": false,
             "preset": false,
             "display-conditions": [
-                "lspci | grep -i '.* nvidia .*'"
+                "lspci | grep -i '.* nvidia .*' | grep -v GF | grep -v GK "
             ],
             "icon": "video-display-symbolic",
             "title": "NVIDIA® Drivers",
@@ -452,7 +398,7 @@
                 "info": {
                     "type": "text",
                     "title": "About Proprietary Drivers",
-                    "text": "A proprietary driver has private code that neither Vanilla OS nor Debian developers can review.\n\nSecurity and other updates are dependent on the driver vendor."
+                    "text": "A proprietary driver has private code that neither Project Shards nor Arch Linux developers can review.\n\nSecurity and other updates are dependent on the driver vendor."
                 }
             },
             "final": [
@@ -460,92 +406,7 @@
                     "if": "nvidia",
                     "type": "command",
                     "commands": [
-                        "apt install -y linux-headers-$(uname -r) nvidia-prime",
-                        "ikaros auto-install"
-                    ]
-                }
-            ]
-        },
-        "vm": {
-            "template": "yes-no",
-            "is-advanced": true,
-            "preset": true,
-            "display-conditions": [
-                "grep 'hypervisor' /proc/cpuinfo"
-            ],
-            "icon": "application-x-appliance-symbolic",
-            "title": "Open VM Tools",
-            "description": "Choose whether to install Open VM Tools for the virtual machine.",
-            "buttons": {
-                "yes": "Install",
-                "no": "Skip",
-                "info": {
-                    "type": "text",
-                    "title": "About Open VM Tools",
-                    "text": "Install Open VM Tools for seamless integration with Virtual machines."
-                }
-            },
-            "final": [
-                {
-                    "if": "vm",
-                    "type": "command",
-                    "commands": ["apt install -y open-vm-tools open-vm-tools-desktop"]
-                }
-            ]
-        },
-        "codecs": {
-            "template": "yes-no",
-            "is-advanced": true,
-            "preset": true,
-            "icon": "vanilla-puzzle-piece-symbolic",
-            "title": "Proprietary Codecs",
-            "description": "Choose whether to install proprietary codecs and fonts.",
-            "buttons": {
-                "yes": "Install",
-                "no": "Skip",
-                "info": {
-                    "type": "text",
-                    "title": "About Proprietary Codecs",
-                    "text": "Install proprietary drivers, fonts and other essentials from the Debian repositories."
-                }
-            },
-            "final": [
-                {
-                    "if": "codecs",
-                    "type": "command",
-                    "commands": ["apt install -y libavcodec-extra gstreamer1.0-fluendo-mp3 gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libavcodec-extra ttf-mscorefonts-installer unrar"]
-                }
-            ]
-        },
-        "extra": {
-            "template": "preferences",
-            "is-advanced": true,
-            "icon": "dialog-warning-symbolic",
-            "title": "Extra Settings",
-            "description": "The following are optional settings, leave them as they are if you don't know what they do.",
-            "preferences": [
-                {
-                    "id": "apport",
-                    "title": "Apport",
-                    "subtitle": "Apport is a crash reporting system that helps us improve the stability of the system."
-                }
-            ],
-            "final": [
-                {
-                    "if": "apport",
-                    "type": "command",
-                    "commands": [
-                        "apt install -y apport",
-                        "systemctl enable apport.service || true"
-                    ]
-                },
-                {
-                    "if": "apport",
-                    "condition": false,
-                    "type": "command",
-                    "commands": [
-                        "apt remove -y apport",
-                        "systemctl disable apport.service || true"
+                        "/usr/share/al.getcryst.FirstSetup/vanilla_first_setup/scripts/install-nvidia.sh"
                     ]
                 }
             ]

@@ -59,11 +59,6 @@ class VanillaLayoutApplications(Adw.Bin):
                     pass
                 if self.__window.builder.get_temp_finals("packages")["vars"]["flatpak"] == True:
                     package_manager = "flatpak"
-                elif self.__window.builder.get_temp_finals("packages")["vars"]["snap"] == True:
-                    try:
-                        package_manager = "snap"
-                    except KeyError:
-                        continue
                 else:
                     continue
                 try:
@@ -157,8 +152,7 @@ class VanillaLayoutApplications(Adw.Bin):
     def __on_page_changed(self, widget, page):
         if page == self.__key:
             if True not in [
-                self.__window.builder.get_temp_finals("packages")["vars"]["flatpak"],
-                self.__window.builder.get_temp_finals("packages")["vars"]["snap"]
+                self.__window.builder.get_temp_finals("packages")["vars"]["flatpak"]
             ]:
                 self.bundles_list.set_sensitive(False)
             else:

@@ -76,7 +76,8 @@ class VanillaDefaultWelcome(Adw.Bin):
         self.__start_welcome_animation()
 
         # signals
-        self.btn_advanced.connect("clicked", self.__advanced)
+        # self.btn_advanced.connect("clicked", self.__advanced)
+        self.btn_advanced.set_visible(False)
         self.btn_next.connect("clicked", self.__next)
 
         # set distro logo
